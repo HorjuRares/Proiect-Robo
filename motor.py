@@ -1,3 +1,7 @@
+"""
+    authors: Avesalon Razvan, Bita Robert, Bora Bogdan, Farkas Istvan, Horju Rares
+"""
+
 import unittest
 import os
 import numpy
