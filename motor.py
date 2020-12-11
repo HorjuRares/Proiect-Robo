@@ -4,6 +4,7 @@
 
 import unittest
 import os
+import time
 import numpy as np
 from absl import app, flags, logging
 import pigpio as gpio
@@ -41,16 +42,21 @@ class DCMotor(Part):
         """
         self.pi.set_PWM_dutycycle(self.ena_pin, value)
 
+    def stop_motor(self):
+        self.output(self.in1_pin, gpio.LOW)
+        self.output(self.in2_pin, gpio.LOW)
+        self.set_speed(0)
+
     def move_forward(self, speed):
-        self.set_speed(speed)
         self.output(self.in1_pin, gpio.HIGH)
         self.output(self.in2_pin, gpio.LOW)
+        self.set_speed(speed)
         logging.log("FORWARD")
 
     def move_backwards(self, speed):
-        self.set_speed(speed)
         self.output(self.in1_pin, gpio.LOW)
         self.output(self.in2_pin, gpio.HIGH)
+        self.set_speed(speed)
         logging.log("BACKWARD")
 
 
@@ -103,7 +109,11 @@ class ServoMotor(Part):
 
 
 def tu_dc_motor(_argv):
-    pass
+    dcMotor1 = DCMotor(ena_pin=1, in1_pin=2, in2_pin=3)
+
+    while True:
+        dcMotor1.move_forward(128)
+        time.sleep(0.1)
 
 
 def tu_servo(_argv):
