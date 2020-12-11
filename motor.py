@@ -76,14 +76,15 @@ class ServoMotor(Part):
         # set initial state as stationary
         self.output(self.steering_pin, 0)
         self.pi.set_PWM_dutycycle(self.steering_pin, 0)
+        # self.pi.set_PWM_range()
 
     def convert_radians_to_PWM(self, rad_value: int):
         """
         pi.set_PWM_dutycycle(4,   0) # PWM off
-        pi.set_PWM_dutycycle(4,  64) # PWM 1/4 on
-        pi.set_PWM_dutycycle(4, 128) # PWM 1/2 on
-        pi.set_PWM_dutycycle(4, 192) # PWM 3/4 on
-        pi.set_PWM_dutycycle(4, 255) # PWM full on
+        pi.set_PWM_dutycycle(4,  25) # PWM 1/4 on
+        pi.set_PWM_dutycycle(4, 50) # PWM 1/2 on
+        pi.set_PWM_dutycycle(4, 75) # PWM 3/4 on
+        pi.set_PWM_dutycycle(4, 100) # PWM full on
         """
         if rad_value < 0 or rad_value > np.pi:
             raise ValueError
@@ -109,7 +110,8 @@ class ServoMotor(Part):
 
 
 def tu_dc_motor(_argv):
-    dcMotor1 = DCMotor(ena_pin=1, in1_pin=2, in2_pin=3)
+    dcMotor1 = DCMotor(ena_pin=24, in1_pin=13, in2_pin=19)
+    dcMotor2 = DCMotor(ena_pin=23, in1_pin=20, in2_pin=21)
 
     while True:
         dcMotor1.move_forward(128)
