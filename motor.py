@@ -115,6 +115,7 @@ def tu_dc_motor(_argv):
 
     while True:
         dcMotor1.move_forward(128)
+        dcMotor2.move_forward(128)
         time.sleep(0.1)
 
 
