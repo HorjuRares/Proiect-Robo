@@ -123,6 +123,8 @@ def tu_servo(_argv):
     servo = ServoMotor()
     PWM_value = servo.convert_radians_to_PWM(np.pi/4)
     print(PWM_value)
+    servo.rotate(0)
+    servo.rotate(1)
 
 
 if __name__ == '__main__':
