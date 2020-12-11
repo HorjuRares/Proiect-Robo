@@ -12,6 +12,7 @@ from part import Part
 
 class DCMotor(Part):
     def __init__(self, ena_pin = 18, in1_pin = 14, in2_pin = 15):
+        super().__init__()
         self.ena_pin = ena_pin
         self.in1_pin = in1_pin
         self.in2_pin = in2_pin
@@ -55,6 +56,7 @@ class DCMotor(Part):
 
 class ServoMotor(Part):
     def __init__(self, pi = gpio.pi(), gpio = gpio, steering_pin = 23):
+        super().__init__()
         self.pi = pi
         self.gpio = gpio
         self.steering_pin = steering_pin
