@@ -1,13 +1,13 @@
 import socket
 
-s = socket.socket()
-host = '' #ip of raspberry pi
-port = 12345
-s.bind((host, port))
+HOST = '192.168.1.2'
+PORT = 12345
 
-s.listen(5)
-while True:
-  c, addr = s.accept()
-  print ('Got connection from',addr)
-  c.send('Thank you for connecting')
-  c.close()
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+s.bind((HOST, PORT))
+s.listen()
+conn, addr = s.accept()
+with conn:
+    print(addr)
+    s.sendall(b'RAPA')
