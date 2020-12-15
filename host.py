@@ -1,10 +1,13 @@
-import enet
+import socket
 
-host = enet.Host(enet.Address("188.27.45.124", 54301), 10, 0, 0, 0)
+s = socket.socket()
+host = '' #ip of raspberry pi
+port = 12345
+s.bind((host, port))
 
-while 1:
-    # Wait 1 second for an event
-    event = host.service(0)
-    if event.type == enet.EVENT_TYPE_CONNECT:
-        print("%s: CONNECT" % event.peer.address)
-        break
+s.listen(5)
+while True:
+  c, addr = s.accept()
+  print ('Got connection from',addr)
+  c.send('Thank you for connecting')
+  c.close()
