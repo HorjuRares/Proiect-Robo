@@ -85,5 +85,6 @@ def tu_plot(_argv):
     m = np.vstack((x.T, y.T))
     plot_measurement(m)
 
+
 if __name__ == '__main__':
     app.run(tu_plot)
